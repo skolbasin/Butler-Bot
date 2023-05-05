@@ -22,4 +22,4 @@ async def set_default_commands(dp):
         BotCommand("try", "Попробуй"),
     ])
 
-проверака
+проверка

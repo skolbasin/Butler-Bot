@@ -18,6 +18,5 @@ async def set_default_commands(dp):
     print('Бот запустился, всё отлично')
     await dp.bot.set_my_commands([
         BotCommand("start", "Запустить бота"),
-        BotCommand("try", "Попробуй"),
     ])
 

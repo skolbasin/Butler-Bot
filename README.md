@@ -2,7 +2,7 @@
 
 Мой первый pet-проект. Бот написан с помощью библиотеки aiogram. Включает весь неоходимый функционал, а именно:
 
-* inline-клавиатуры 
+* inline-клавиатуры(https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/inline_keyboards.py)
 * reply-клавиатуры
 * работа с различными сценариюями
 * настроенная админка

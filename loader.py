@@ -1,5 +1,5 @@
 from aiogram.types import BotCommand
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage # просто, хранящее информацию в ОП
 from dotenv import load_dotenv, find_dotenv
 import os

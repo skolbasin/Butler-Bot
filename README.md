@@ -10,7 +10,7 @@
 * проверка на мат (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/handlers/swear.py)
 * хендлеры на конкретный ответ (https://github.com/sergeykolbasin97/MyFirstBot/tree/master/handlers/custom_handlers)
 * отправление клиентом геолокации и личного номере телефона (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/reply_keyboards.py)
-====
+
 ## Как запустить проект
 
 1. В Telegram-боте **BotFather** необходимо получить токен бота
@@ -18,7 +18,7 @@
 3. Установить все необходимые расширения из файла *requirements.txt* 
 4. Скачать все папки и файлы из репозитория 
 5. Запустить проект через *run.py*
-====
+
 ## Архитектура проекта 
 
 * *database* - папка для работы с базой
@@ -30,7 +30,7 @@
 * *run.py* - файл, запускающий бота 
 * *requirements.txt* - текстовый файл с необходимыми расширениями
 * *admin.py* - файл с админкой
-====
+
 ## Применение алгоритмов в проекте
 
 Для того, чтобы продемонстрировать знания основ программирования и синтаксиса языка Python, внес в проект несколько функций
@@ -70,7 +70,7 @@ def transformation_date(date: str) -> str:
 - работы с условным оператором
 - работы с циклом for
 - работы с модулем datetime
-====
+
 ## Библиотеки 
 ```
 aiogram==2.25.1

@@ -96,9 +96,9 @@
 
 ## Библиотеки 
 
-aiogram==2.25.1
-aiohttp==3.8.4
-aiosignal==1.3.1
+* aiogram==2.25.1
+* aiohttp==3.8.4
+* aiosignal==1.3.1
 async-timeout==4.0.2
 attrs==23.1.0
 Babel==2.9.1

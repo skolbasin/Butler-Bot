@@ -35,58 +35,58 @@
 
 Для того, чтобы продемонстрировать знания основ программирования и синтаксиса языка Python, внес в проект несколько функций
 
-* 1. 
-+1.1. Функция меняет стандартный формат datetime 'YYYY-MM-DD'
-```
-months_dict = {1: 'Январь', 2: 'Февраль', 3: 'Март', 4: 'Апрель', 5: 'Май', 6: 'Июнь',
-               7: 'Июль', 8: 'Август', 9: 'Сентябрь', 10: 'Октябрь', 11: 'Ноябрь', 12: 'Декабрь'}
+* 1
+  + 1.1. Функция меняет стандартный формат datetime 'YYYY-MM-DD'
+  ```
+  months_dict = {1: 'Январь', 2: 'Февраль', 3: 'Март', 4: 'Апрель', 5: 'Май', 6: 'Июнь',
+                 7: 'Июль', 8: 'Август', 9: 'Сентябрь', 10: 'Октябрь', 11: 'Ноябрь', 12: 'Декабрь'}
 
-end_ya = [1, 2, 4, 5, 6, 7, 9, 10, 11, 12]
-end_a = [3, 8]
+  end_ya = [1, 2, 4, 5, 6, 7, 9, 10, 11, 12]
+  end_a = [3, 8]
 
-def transformation_date(date: str) -> str:
-    list_format = date.split('-')
-    if list_format[2][0] == '0':
-        day = list_format[2][1]
-    else:
-        day = list_format[2]
+  def transformation_date(date: str) -> str:
+      list_format = date.split('-')
+      if list_format[2][0] == '0':
+          day = list_format[2][1]
+      else:
+          day = list_format[2]
 
-    if list_format[1][0] == '0':
-        month = int(list_format[1][1])
-    else:
-        month = int(list_format[1])
+      if list_format[1][0] == '0':
+          month = int(list_format[1][1])
+      else:
+          month = int(list_format[1])
 
-    for i, i_month in months_dict.items():
-        if i == month and i in end_ya:
-            month = i_month[:-1] + 'я'
-            break
-        elif i == month and i in end_a:
-            month = i_month + 'а'
+      for i, i_month in months_dict.items():
+          if i == month and i in end_ya:
+              month = i_month[:-1] + 'я'
+              break
+          elif i == month and i in end_a:
+              month = i_month + 'а'
 
-    year = list_format[0]
-    return f'{day} {month} {year} г.'
-```
+      year = list_format[0]
+      return f'{day} {month} {year} г.'
+  ```
 
-Данная функция демонстрирует знания: 
-- работы со списками, словарями
-- работы с условным оператором if
-- работы с циклом for
-- работы с модулем datetime
+  Данная функция демонстрирует знания: 
+  - работы со списками, словарями
+  - работы с условным оператором if
+  - работы с циклом for
+  - работы с модулем datetime
 
-+ 1.2 Функция меняет окончание слова 'день' в зависимости от числа 
-```
-list_1 = ['1']
-list_2 = ['2', '3', '4']
-list_3 = ['0', '5', '6', '7', '8', '9']
+  + 1.2 Функция меняет окончание слова 'день' в зависимости от числа 
+  ```
+  list_1 = ['1']
+  list_2 = ['2', '3', '4']
+  list_3 = ['0', '5', '6', '7', '8', '9']
 
-def day_transformation(number: int) -> str:
-  if str(number)[-1:] in list_1:
-    return f'{str(number)} день'
-  elif str(number)[-1:] in list_2:
-    return f'{str(number)} дня'
-  elif str(number)[-1:] in list_3:
-    return f'{str(number)} дней'
-```
+  def day_transformation(number: int) -> str:
+    if str(number)[-1:] in list_1:
+      return f'{str(number)} день'
+    elif str(number)[-1:] in list_2:
+      return f'{str(number)} дня'
+    elif str(number)[-1:] in list_3:
+      return f'{str(number)} дней'
+  ```
 
 
 ## Библиотеки 

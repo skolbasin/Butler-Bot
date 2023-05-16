@@ -4,7 +4,7 @@ from run import Mr_Butler, bot
 from states.quiz import Quiz
 
 
-@Mr_Butler.message_handler(commands=['Викторина'])
+@Mr_Butler.message_handler(commands=['quiz'])
 async def user_register(message: types.Message):
     await message.answer("Рад приветствовать Вас на Викторине <b>'За знания - ДА!'</b>\n"
                          "Пожалуйста, введите Ваше имя для начала игры", parse_mode='html')

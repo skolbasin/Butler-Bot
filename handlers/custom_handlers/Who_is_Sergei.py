@@ -2,7 +2,7 @@ from run import Mr_Butler, bot
 from aiogram.types import message
 from keyboards.inline_keyboards import inline_kb
 
-@Mr_Butler.message_handler(commands=['who'])
+@Mr_Butler.message_handler(lambda message: 'who' in message.text)
 async def hi(message: message):
     await bot.send_photo(message.from_user.id,
                          photo=open('foto/prog.jpg', 'rb'),

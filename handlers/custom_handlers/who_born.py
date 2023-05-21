@@ -10,7 +10,7 @@ birthday = date(2023, 4, 25)
 current_day = date.today()
 difference = (current_day - birthday).days
 
-@Mr_Butler.message_handler(commands=['born'])
+@Mr_Butler.message_handler(lambda message: 'born' in message.text)
 async def hi(message: message):
     await bot.send_photo(message.from_user.id,
                          photo=open('foto/baby.jpg', 'rb'),

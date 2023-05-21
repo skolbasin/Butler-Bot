@@ -2,6 +2,7 @@ from aiogram.utils import executor
 from loader import set_default_commands
 from loader import Mr_Butler
 from loader import bot
+import admin
 import handlers
 from handlers.states_handlers import quiz_handler # без ручного импорта не видит эти хендлеры, поэтому прописал отдельно
 

@@ -6,7 +6,7 @@ ID = None
 async def chech_admin(message: types.message):
     global ID
     ID = message.from_user.id
-    await message.answer(f'Ваш ID {ID}, вы являетесь администратором этой группы')
+    await message.answer(f'Ваш ID {ID}\nВы являетесь администратором этой группы')
 
 
 

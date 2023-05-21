@@ -5,7 +5,7 @@
 * inline-клавиатуры( https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/inline_keyboards.py)
 * reply-клавиатуры (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/reply_keyboards.py)
 * работа с различными сценариями (https://github.com/sergeykolbasin97/MyFirstBot/tree/master/states)
-* настроенная админка (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/admin.py)
+* админка (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/admin.py)
 * подключение к БД
 * проверка на мат (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/handlers/swear.py)
 * хендлеры на конкретный ответ (https://github.com/sergeykolbasin97/MyFirstBot/tree/master/handlers/custom_handlers)
@@ -30,6 +30,11 @@
 * *run.py* - файл, запускающий бота 
 * *requirements.txt* - текстовый файл с необходимыми расширениями
 * *admin.py* - файл с админкой
+
+## Админка
+В файле *admin.py* прописан хендлер на проверку администартором группы пользователя. После выполнения данной команды, в переменную **ID** сохраняется
+**ID** администратора и ряд команд сможет совершать только он. В данном проекте не подключена валидация на админа, т.к. нет таких команд, которые разрешены только админу
+Но есть Вы захотите прописать валидацию, то необходимо в хендлере прописать условие `if message.from_user.id == ID` и сделать импорт переменной **ID**.
 
 ## Применение алгоритмов в проекте
 

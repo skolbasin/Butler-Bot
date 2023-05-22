@@ -22,5 +22,6 @@ async def set_default_commands(dp):
         BotCommand("born", "Кто родился у Сергея"),
         BotCommand("who", "Узнать немного о Сергее"),
         BotCommand("quiz", "Поучаствовать в викторине"),
+        BotCommand("req", "Отправить заявку Сергею"),
     ])
 

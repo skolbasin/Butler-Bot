@@ -4,8 +4,7 @@ from loader import Mr_Butler
 from loader import bot
 import admin
 import handlers
-from handlers.states_handlers import quiz_handler # без ручного импорта не видит эти хендлеры, поэтому прописал отдельно
-
+from handlers.states_handlers import quiz_handler, add_request # без ручного импорта не видит эти хендлеры, поэтому прописал отдельно
 
 if __name__ == '__main__':
     executor.start_polling(Mr_Butler, skip_updates=True, on_startup=set_default_commands)

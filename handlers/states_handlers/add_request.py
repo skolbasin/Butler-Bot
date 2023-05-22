@@ -3,6 +3,7 @@ from aiogram.dispatcher import FSMContext
 from keyboards.reply_keyboards import reply_kb2
 from run import Mr_Butler, bot
 from states.request import Request
+from datetime import datetime
 
 
 @Mr_Butler.message_handler(lambda message: 'req' in message.text)
@@ -32,11 +33,22 @@ async def get_user_name(message: types.Message, state: FSMContext):
 # Второй вопрос
 @Mr_Butler.message_handler(state=Request.req_type)
 async def get_req_type(message: types.Message, state: FSMContext):
-    new_list = ['1', '2', '3', '4']
-    if message.text in new_list:
-        await state.update_data(first_answer=message.text)
-        await message.answer("Укажите описание",
+    if message.text == '1':
+        await state.update_data(req_type=message.text)
+        await message.answer("Напишите, пожалуйста, когда бы хотели встретиться")
+        await Request.next()
+    elif message.text == '2':
+        await state.update_data(req_type=message.text)
+        await message.answer("Напишите, пожалуйста, Ваш номер телефона в формате <b>8 (YYY) XXX XX XX</b>",
                              parse_mode='html')
+        await Request.next()
+    elif message.text == '3':
+        await state.update_data(req_type=message.text)
+        await message.answer("Введите зашифрованный текст")
+        await Request.next()
+    elif message.text == '4':
+        await state.update_data(req_type=message.text)
+        await message.answer("Укажите, что именно Вас интересует, я Все передам в точности от слова к слову!")
         await Request.next()
     else:
         await message.answer('Дорогой друг, напиши, пожалуйста, цифру от 1 до 4, '
@@ -46,8 +58,8 @@ async def get_req_type(message: types.Message, state: FSMContext):
 # Третий вопрос
 @Mr_Butler.message_handler(state=Request.description)
 async def get_description(message: types.Message, state: FSMContext):
-    if message.text.lower() == 'нуб':
-        await state.update_data(second_answer=message.text)
+        await state.update_data(description=message.text, created_at=datetime.now())
+        data = await state.get_data()
         await message.answer("Отлично! Ваша заявка сформирована")
         await state.finish()
 

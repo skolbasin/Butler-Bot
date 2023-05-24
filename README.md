@@ -51,6 +51,7 @@ ID администратора и ряд команд сможет соверш
 5. description - описание, в зависимости от типа заявки
 
 После окончания заполнения заявки, данные уходят в БД, которая написана через SQLite.
+Код машины - https://github.com/sergeykolbasin97/Butler-Bot/blob/master/handlers/states_handlers/add_request.py
 
 ## Применение алгоритмов в проекте
 

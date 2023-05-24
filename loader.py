@@ -3,6 +3,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage # просто, хранящее информацию в ОП
 from dotenv import load_dotenv, find_dotenv
 import os
+from database.sqlite_db import sql_new_base
 
 if not find_dotenv():
     exit("Переменные окружения не загружены т.к отсутствует файл .env")
@@ -16,6 +17,7 @@ Mr_Butler = Dispatcher(bot, storage=storage)
 
 async def set_default_commands(dp):
     print('Бот запустился, всё отлично')
+    sql_new_base()
     await dp.bot.set_my_commands([
         BotCommand("start", "Запустить бота"),
         BotCommand("where", "Узнать где сейчас Сергей"),

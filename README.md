@@ -62,6 +62,15 @@ ID администратора и ряд команд сможет соверш
 Пример: конь - косонь, рука -русукаса   
 Данная функция принимает на вход зашифрованный текст и выдает расшифровку  
 Сложность алгоритма - О(n)  
+```
+def translator(string: str):
+  vowels = ['а', 'о', 'е', 'ё', 'и', 'ы', 'у', 'э', 'ю', 'я']
+  new_list = list(string)
+  for index, i_letter in enumerate(new_list):
+    if i_letter in vowels:
+      del new_list[index +1:index + 3]
+  return ''.join(new_list)
+```
 
 * 2 ***Функции***
   + 1.1. Функция меняет стандартный формат datetime 'YYYY-MM-DD'

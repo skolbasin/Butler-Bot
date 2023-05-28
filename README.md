@@ -68,7 +68,7 @@ def translator(string: str):
   new_list = list(string)
   for index, i_letter in enumerate(new_list):
     if i_letter in vowels:
-      del new_list[index +1:index + 3]
+      del new_list[index + 1:index + 3]
   return ''.join(new_list)
 ```
 

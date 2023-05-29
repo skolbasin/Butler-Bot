@@ -2,13 +2,14 @@ import re
 
 from aiogram import types
 from aiogram.dispatcher import FSMContext
-from keyboards.reply_keyboards import reply_kb2
+from keyboards.reply_keyboards import reply_kb2, reply_kb3
 from run import Mr_Butler, bot
 from states.request import Request
 from datetime import datetime
 from utils.all_pattern import telephone_pattern, data_pattern
 from utils.time_of_day import check_daytime
 from database.sqlite_db import db_table_val
+from utils.translator import translator
 
 
 @Mr_Butler.message_handler(lambda message: 'req' in message.text)
@@ -64,25 +65,31 @@ async def get_req_type(message: types.Message, state: FSMContext):
 # Третий вопрос
 @Mr_Butler.message_handler(state=Request.description)
 async def get_description(message: types.Message, state: FSMContext):
-        answer = await state.get_data()
         await state.update_data(description=message.text, created_at=datetime.now())
         data = await state.get_data()
-        if answer['req_type'] == '1'and re.match(data_pattern, message.text) is not None:
-            await message.answer(f"Отлично! Передам Сергею, что вы хотите встретиться {message.text}.\n{check_daytime()}", parse_mode='html')
-            await state.finish()
-        elif answer['req_type'] == '1'and re.match(data_pattern, message.text) is None:
-            await message.answer(f"{data['user_name']}, пожалуйста, введите дату в корректном формае")
-        elif answer['req_type'] == '2' and re.match(telephone_pattern, message.text) is not None:
-            await message.answer(f"Отлично! Передам Ваши контакты\nСергей наберет Вас как только освободиться.\n{check_daytime()}")
-            await state.finish()
-        elif answer['req_type'] == '2' and re.match(telephone_pattern, message.text) is None:
-            await message.answer(f"{answer['user_name']}, введите, пожалуйста, номер телефона в том формате, который я указал выше. Спасибо!")
-        elif answer['req_type'] == '3':
-            await message.answer(f"Передам Ваш шифр Сергею.\n{check_daytime()}")
-            await state.finish()
-        elif answer['req_type'] == '4':
-            await message.answer(f"Хорошо. Передам Ваш запрос.\n{check_daytime()}'")
-            await state.finish()
+        if data['req_type'] == '1'and re.match(data_pattern, message.text) is not None:
+            await message.answer(f"Отлично! Записал на  {message.text}")
+        elif data['req_type'] == '1'and re.match(data_pattern, message.text) is None:
+            await message.answer(f"{data['user_name']}, пожалуйста, введите дату в корректном формате")
+        elif data['req_type'] == '2' and re.match(telephone_pattern, message.text) is not None:
+            await message.answer("Отлично! Записал Ваши контакты")
+        elif data['req_type'] == '2' and re.match(telephone_pattern, message.text) is None:
+            await message.answer(f"{data['user_name']}, введите, пожалуйста, номер телефона в том формате, который я указал выше. Спасибо!")
+        elif data['req_type'] == '3':
+            await state.update_data(description=translator(message.text), created_at=datetime.now())
+            await message.answer(f"Шифр записал")
+        elif data['req_type'] == '4':
+            await message.answer("Записал Ваш запрос!")
 
-        db_table_val(user_name=data['user_name'], req_type=data['req_type'], description=data['description'], created_at=data['created_at'])
+        await message.answer("Отправляю заявку?", reply_markup=reply_kb3)
+        await Request.next()
 
+@Mr_Butler.message_handler(state=Request.created_at)
+async def get_database(message: types.Message, state: FSMContext):
+
+    if message.text.lower() == 'да':
+        data = await state.get_data()
+        db_table_val(user_name=data['user_name'], req_type=data['req_type'], description=data['description'],
+                    created_at=data['created_at'])
+        await message.answer(f"Отправил!\n{check_daytime()}")
+        await state.finish()

@@ -89,7 +89,7 @@ async def get_database(message: types.Message, state: FSMContext):
 
     if message.text.lower() == 'да':
         data = await state.get_data()
-        db_table_val(user_name=data['user_name'], req_type=data['req_type'], description=data['description'],
+        await db_table_val(user_name=data['user_name'], req_type=data['req_type'], description=data['description'],
                     created_at=data['created_at'])
         await message.answer(f"Отправил!\n{check_daytime()}")
         await state.finish()

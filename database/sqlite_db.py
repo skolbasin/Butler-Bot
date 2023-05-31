@@ -22,8 +22,20 @@ def sql_new_base():
 #     cur.execute('INSERT INTO requests VALUES (?, ?, ?, ?)', tuple(data.values()))
 #     base.commit()
 
-def db_table_val( user_name: str, req_type, description, created_at):
+async def db_table_val(user_name: str, req_type, description, created_at):
 	cur.execute('INSERT INTO requests (user_name, req_type, description, created_at) VALUES (?, ?, ?, ?)', (user_name, req_type, description, created_at))
 	base.commit()
+
+async def check_db(message):
+    count = 1
+    for i_elem in cur.execute('SELECT * FROM requests').fetchall():
+        await message.answer(f'<b>Заявка {count}</b>\n'
+                             f'<u>ID</u>: {i_elem[0]}\n'
+                             f'<u>Имя</u>: {i_elem[1]}\n'
+                             f'<u>Тип</u>: {i_elem[2]}\n'
+                             f'<u>Описание</u>: {i_elem[3]}\n'
+                             f'<u>Создана</u>: {i_elem[4][:16]}',
+                             parse_mode='html')
+        count += 1
 
 

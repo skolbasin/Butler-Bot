@@ -40,7 +40,7 @@ async def all_requests(message: types.message):
     if message.from_user.id == ID:
         await check_db(message)
 ```
-Сама функцию, выдающая результат из БД:
+Сама функция, выдающая результат из БД:
 ```
 async def check_db(message):
     count = 1

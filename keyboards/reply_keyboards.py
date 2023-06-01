@@ -18,7 +18,7 @@ buttons = [
 reply_kb2.row(*buttons)
 
 
-reply_kb3 =  ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+reply_kb3 = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 b1 = KeyboardButton('Да')
 b2 = KeyboardButton('Нет')
 reply_kb3.row(b1, b2)

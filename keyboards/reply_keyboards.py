@@ -11,12 +11,12 @@ b2 = KeyboardButton('Подсказка')
 cancel_kb.row(b1, b2)
 
 reply_kb2 = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-b1 = KeyboardButton('1')
-b2 = KeyboardButton('2')
-b3 = KeyboardButton('3')
-b4 = KeyboardButton('4')
-reply_kb2.row(b1, b2)
-reply_kb2.row(b3, b4)
+buttons = [
+            KeyboardButton('1'), KeyboardButton('2'),
+            KeyboardButton('3'), KeyboardButton('4')
+        ]
+reply_kb2.row(*buttons)
+
 
 reply_kb3 =  ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 b1 = KeyboardButton('Да')

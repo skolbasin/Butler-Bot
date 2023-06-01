@@ -93,6 +93,3 @@ async def get_database(message: types.Message, state: FSMContext):
                     created_at=data['created_at'])
         await message.answer(f"Отправил!\n{check_daytime()}")
         await state.finish()
-    else:
-        await message.answer(f"Понял Вас\n{check_daytime()} ")
-        await state.finish()

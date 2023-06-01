@@ -1,6 +1,6 @@
 from run import Mr_Butler, bot
 from aiogram.types import message
-from keyboards.reply_keyboards import reply_kb
+from keyboards.inline_keyboards import inline_kb3
 from datetime import date
 from utils.date_transformation import transformation_date
 from utils.day_transformation import day_transformation
@@ -17,4 +17,4 @@ async def hi(message: message):
                          caption=f'Родилась девочка!\n'
                                  f'Звать <b>Алина</b> 👶\n'
                                  f'Сегодня {transformation_date(str(current_day))}, а значит Алине сейчас {day_transformation(difference)}🥳',
-                         reply_markup=reply_kb, parse_mode='html')
+                         reply_markup=inline_kb3, parse_mode='html')

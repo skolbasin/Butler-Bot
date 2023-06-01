@@ -15,7 +15,3 @@ async def chech_admin(message: types.message):
 async def all_requests(message: types.message):
     if message.from_user.id == ID:
         await check_db(message)
-
-
-
-

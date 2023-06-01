@@ -8,7 +8,7 @@
 * админка (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/admin.py)
 * создание и подключение БД (https://github.com/sergeykolbasin97/Butler-Bot/tree/master/database)
 * проверка на мат (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/handlers/swear.py)
-* обработчики команд (хендлеры)(https://github.com/sergeykolbasin97/MyFirstBot/tree/master/handlers/custom_handlers)
+* обработчики команд (хендлеры)(https://github.com/sergeykolbasin97/Butler-Bot/tree/master/handlers)
 * отправление клиентом геолокации и личного номере телефона (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/reply_keyboards.py)
 
 ## Как запустить проект

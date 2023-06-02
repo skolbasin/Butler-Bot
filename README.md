@@ -6,7 +6,7 @@
 * reply-клавиатуры (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/reply_keyboards.py)
 * работа с различными сценариями (https://github.com/sergeykolbasin97/MyFirstBot/tree/master/states)
 * админка (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/admin.py)
-* создание и подключение БД (https://github.com/sergeykolbasin97/Butler-Bot/tree/master/database)
+* работа с БД (https://github.com/sergeykolbasin97/Butler-Bot/tree/master/database)
 * проверка на мат (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/handlers/swear.py)
 * обработчики команд (хендлеры)(https://github.com/sergeykolbasin97/Butler-Bot/tree/master/handlers)
 * отправление клиентом геолокации и личного номере телефона (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/reply_keyboards.py)
@@ -63,16 +63,59 @@ async def check_db(message):
 3. Зашифровать послание на языке 'Присивесет'
 4. Другое
 
-Сама таблица состоит из 5 полей: 
+Сама таблица состоит из 6 полей: 
 1. req_id - является PRIMARY KEY С AUTO_INCREMENT
 2. user_name - имя пользователя
 3. req_type - тип заявки
 4. created_at - дата создания заявки
 5. description - описание, в зависимости от типа заявки
+6. implementation - статус, меняется по запросу администратора
+
 
 После окончания заполнения заявки, данные уходят в БД, которая написана через SQLite.
 Код машины - https://github.com/sergeykolbasin97/Butler-Bot/blob/master/handlers/states_handlers/add_request.py
+Управлять БД может администратор. Он может посмотреть сами заявки:
+```
+async def check_db(message):
+    count = 1
+    for i_elem in cur.execute('SELECT * FROM requests').fetchall():
+        await message.answer(f'<b>Заявка {count}</b>\n'
+                             f'<u>ID</u>: {i_elem[0]}\n'
+                             f'<u>Имя</u>: {i_elem[1]}\n'
+                             f'<u>Тип</u>: {i_elem[2]}\n'
+                             f'<u>Описание</u>: {i_elem[3]}\n'
+                             f'<u>Создана</u>: {i_elem[4][:16]}\n'
+                             f'<u>Статус</u>: {i_elem[5]}',
+                             parse_mode='html')
+        count += 1
+```
+изменить статус заявки с 'не обработано' на 'обработано'
+```
+async def change_db_status(data):
+    cur.execute('UPDATE requests SET implementation="Обработано" WHERE req_id == ?', (data,))
+    base.commit()
 
+```
+удалить заявку
+```
+async def delete_db(data):
+    cur.execute('DELETE FROM requests WHERE req_id == ?', (data,))
+    base.commit()
+```
+Удаление и изменение данные реализовано через inline-клавиатуру
+```
+@Mr_Butler.message_handler(commands='Редактировать')
+async def all_requests(message: types.message):
+    if message.from_user.id == ID:
+        request_list = await read_db()
+        count = 0
+        for i_req in request_list:
+            count += 1
+            await bot.send_message(message.from_user.id, text=f'<b>Заявка {count}</b>\n{i_req}', reply_markup=inline_kb4, parse_mode='html')
+
+inline_kb4 = InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text='Выполнено✅', callback_data='change1'),
+                                                   InlineKeyboardButton(text='Удалить❌', callback_data='change2'))
+```
 ## Применение алгоритмов в проекте
 
 Для того, чтобы продемонстрировать знания основ программирования и синтаксиса языка Python, внес в проект несколько функций

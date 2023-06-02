@@ -11,7 +11,7 @@ def sql_new_base():
                  'user_name VARCHAR(25), '
                  'req_type TEXT, '
                  'description TEXT, '
-                 'created_at DATETIME)'.format('requests')
+                 'created_at DATETIME)'.format('requests'),
                  )
     base.commit()
 
@@ -38,4 +38,10 @@ async def check_db(message):
                              parse_mode='html')
         count += 1
 
+async def read_db():
+    return cur.execute('SELECT * FROM requests').fetchall()
 
+async def delete_db(data):
+    print(data)
+    cur.execute('DELETE FROM requests WHERE req_id == ?', (data,))
+    base.commit()

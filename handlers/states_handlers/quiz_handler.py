@@ -134,4 +134,3 @@ async def get_fourth_answer(message: types.Message, state: FSMContext):
     else:
         await message.answer('К сожалению, это неверный ответ, подумайте еще. Как надумаете, приходите играть заново.')
     await state.finish()
-

@@ -14,6 +14,5 @@ inline_kb2 = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Ч
 inline_kb3 = InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text='👍', callback_data='form1'),
                                                    InlineKeyboardButton(text='👎', callback_data='form2'))
 
-
-
-
+inline_kb4 = InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text='Выполнено✅', callback_data='change1'),
+                                                   InlineKeyboardButton(text='Удалить❌', callback_data='change2'))

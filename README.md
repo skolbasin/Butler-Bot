@@ -68,7 +68,7 @@ P.S. Если Вы захотите прописать валидацию и к 
 
 
 После окончания заполнения заявки, данные уходят в БД, которая написана через SQLite.  
-Код машины - https://github.com/sergeykolbasin97/Butler-Bot/blob/master/handlers/states_handlers/add_request.py
+Код машины - https://github.com/sergeykolbasin97/Butler-Bot/blob/master/handlers/states_handlers/add_request.py  
 Управлять БД может администратор. Он может посмотреть сами заявки:
 ```
 async def check_db(message):

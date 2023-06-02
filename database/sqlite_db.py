@@ -11,7 +11,8 @@ def sql_new_base():
                  'user_name VARCHAR(25), '
                  'req_type TEXT, '
                  'description TEXT, '
-                 'created_at DATETIME)'.format('requests'),
+                 'created_at DATETIME, '
+                 'implementation TEXT) '.format('requests')
                  )
     base.commit()
 
@@ -22,8 +23,8 @@ def sql_new_base():
 #     cur.execute('INSERT INTO requests VALUES (?, ?, ?, ?)', tuple(data.values()))
 #     base.commit()
 
-async def db_table_val(user_name: str, req_type, description, created_at):
-	cur.execute('INSERT INTO requests (user_name, req_type, description, created_at) VALUES (?, ?, ?, ?)', (user_name, req_type, description, created_at))
+async def db_table_val(user_name: str, req_type, description, created_at, implementation):
+	cur.execute('INSERT INTO requests (user_name, req_type, description, created_at, implementation ) VALUES (?, ?, ?, ?, ?)', (user_name, req_type, description, created_at, implementation))
 	base.commit()
 
 async def check_db(message):
@@ -34,7 +35,8 @@ async def check_db(message):
                              f'<u>Имя</u>: {i_elem[1]}\n'
                              f'<u>Тип</u>: {i_elem[2]}\n'
                              f'<u>Описание</u>: {i_elem[3]}\n'
-                             f'<u>Создана</u>: {i_elem[4][:16]}',
+                             f'<u>Создана</u>: {i_elem[4][:16]}\n'
+                             f'<u>Статус</u>: {i_elem[5]}',
                              parse_mode='html')
         count += 1
 
@@ -42,6 +44,9 @@ async def read_db():
     return cur.execute('SELECT * FROM requests').fetchall()
 
 async def delete_db(data):
-    print(data)
     cur.execute('DELETE FROM requests WHERE req_id == ?', (data,))
+    base.commit()
+
+async def change_db_status(data):
+    cur.execute('UPDATE requests SET implementation="Обработано" WHERE req_id == ?', (data,))
     base.commit()

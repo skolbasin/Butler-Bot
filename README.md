@@ -1,6 +1,6 @@
 # Бот-секретарь
 
-Мой первый pet-проект. Бот написан с помощью библиотеки aiogram. Включает весь неоходимый функционал, а именно:
+Бот написан с помощью библиотеки aiogram. Включает весь неоходимый функционал, а именно:
 
 * inline-клавиатуры( https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/inline_keyboards.py)
 * reply-клавиатуры (https://github.com/sergeykolbasin97/MyFirstBot/blob/master/keyboards/reply_keyboards.py)
